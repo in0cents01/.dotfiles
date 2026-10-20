@@ -82,7 +82,7 @@
 [Kitty](https://sw.kovidgoyal.net/kitty/) · [tmux](https://github.com/tmux/tmux) · [Zsh](https://www.zsh.org/) · [Starship](https://starship.rs/) · [lazygit](https://github.com/jesseduffield/lazygit)
 
 <details>
-<summary><b>Install everything on Ubuntu / Debian</b></summary>
+<summary><b>Install </b></summary>
 
 <br>
 
@@ -114,7 +114,7 @@ curl -sS https://starship.rs/install.sh | sh
 git clone https://github.com/thatsothoundotctl01-dotcom/.dotfiles.git ~/.dotfiles
 ```
 
-### 2. Back up your existing config
+### 2. Back up 
 
 ```sh
 mv ~/.config/nvim      ~/.config/nvim.bak      2>/dev/null
@@ -123,15 +123,10 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak 2>/dev/null
 mv ~/.cache/nvim       ~/.cache/nvim.bak       2>/dev/null
 ```
 
-### 3. Link the Neovim config
+### 3. Clone Lazyvim 
 
 ```sh
-mkdir -p ~/.config/nvim
-ln -s ~/.dotfiles/init.lua        ~/.config/nvim/init.lua
-ln -s ~/.dotfiles/nvim/lua        ~/.config/nvim/lua
-ln -s ~/.dotfiles/lazyvim.json    ~/.config/nvim/lazyvim.json
-ln -s ~/.dotfiles/lazy-lock.json  ~/.config/nvim/lazy-lock.json
-ln -s ~/.dotfiles/stylelua.toml   ~/.config/nvim/stylua.toml
+git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/nvim/.git && nvim
 ```
 
 ### 4. Launch
