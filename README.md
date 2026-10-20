@@ -1,13 +1,11 @@
 <div align="center">
 
-#  .dotfiles
-
-**A fast, minimal terminal setup: LazyVim · Kitty · tmux · Zsh · Starship**
+# .dotfiles
 
 <br>
 
 ![Neovim](https://img.shields.io/badge/Neovim-0.12.5-57A143?style=for-the-badge&logo=neovim&logoColor=white)
-![LazyVim](https://img.shields.io/badge/Distro-LazyVim-0A7AFF?style=for-the-badge)
+![LazyVim](https://img.shields.io/badge/LazyVim-Enabled-0A7AFF?style=for-the-badge)
 ![Lua](https://img.shields.io/badge/Made%20with-Lua-2C2D72?style=for-the-badge&logo=lua&logoColor=white)
 ![Kitty](https://img.shields.io/badge/Terminal-Kitty-FFB86C?style=for-the-badge)
 ![tmux](https://img.shields.io/badge/tmux-1BB91F?style=for-the-badge&logo=tmux&logoColor=white)
@@ -16,187 +14,116 @@
 
 <br>
 
-[What's included](#-whats-included) ·
-[Requirements](#-requirements) ·
-[Quick start](#-quick-start) ·
-[Shell & terminal](#-shell--terminal-configs) ·
-[Shortcuts](#-notable-shortcuts) ·
-[Troubleshooting](#-troubleshooting) ·
-[Updating](#-updating)
+[Overview](#overview) • [Requirements](#requirements) • [Install](#install) • [Layout](#layout) • [Shortcuts](#notable-neovim-shortcuts) • [Troubleshooting](#troubleshooting)
 
 </div>
 
 ---
 
-## ✨ What's included
+## Overview
 
-| | Component | What you get |
-| :-: | --- | --- |
-| 🟢 | **Neovim** | LazyVim config, plugin specs, language servers, formatters, Treesitter parsers, and code-runner shortcuts |
-| 🐱 | **Kitty** | Terminal appearance, tabs, layouts, and key bindings |
-| 🪟 | **tmux** | Compact status bar, pane styling, mouse support, Zsh as default shell |
-| 🐚 | **Zsh + Starship** | Shell initialization and a Catppuccin-inspired prompt |
+This repository contains a personal Linux development setup built around Neovim, LazyVim, and a few supporting terminal tools. It is designed for a fast, low-friction workflow with a clean terminal aesthetic and a quick startup experience.
 
-## 📁 Repository layout
+Included components:
 
-```text
-.dotfiles/
-├── nvim/               # LazyVim config  →  ~/.config/nvim
-├── kitty/kitty.conf    # Kitty           →  ~/.config/kitty/kitty.conf
-├── .tmux/tmux.conf     # tmux            →  ~/.tmux.conf
-└── .zsh/
-    ├── .zshrc          # Zsh             →  ~/.zshrc
-    └── starship.toml   # Starship        →  ~/.config/starship.toml
-```
+- Neovim with LazyVim and custom plugin configuration
+- Kitty terminal profile and keybindings
+- tmux session config
+- Zsh startup file and Starship prompt
+- Git configuration for a consistent author identity and editor
 
 ---
 
-## 📦 Requirements
+## Requirements
 
-Tested on **Ubuntu (x86_64)**.
+### Core
 
-<details open>
-<summary><b>1. Base tools</b></summary>
+- Git
+- Neovim 0.12.5 or newer
+- A POSIX shell environment (Linux, WSL, or similar)
 
-<br>
+### Install Git
 
 ```sh
-sudo apt update
-sudo apt install -y git curl build-essential ripgrep fd-find unzip
-
-# Ubuntu ships `fd` as `fdfind`; LazyVim expects `fd`
-mkdir -p ~/.local/bin
-ln -sf "$(which fdfind)" ~/.local/bin/fd
+sudo apt install git -y && git --version
 ```
 
-</details>
-
-<details open>
-<summary><b>2. Neovim 0.12.5</b></summary>
-
-<br>
+### Install Neovim 0.12.5
 
 ```sh
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
-source ~/.bashrc
-
-nvim --version   # should print NVIM v0.12.5
 ```
 
-> On ARM64 (`uname -m` prints `aarch64`), use `nvim-linux-arm64.tar.gz` and `/opt/nvim-linux-arm64/bin` instead.
+Then reload your shell:
 
-</details>
+```sh
+source ~/.bashrc
+```
 
-<details>
-<summary><b>3. Optional extras</b></summary>
+### Optional tools
 
-<br>
-
-- [Nerd Font](https://www.nerdfonts.com/) v3.0+ so icons render correctly
-- [Kitty](https://sw.kovidgoyal.net/kitty/), [tmux](https://github.com/tmux/tmux), [Zsh](https://www.zsh.org/), [Starship](https://starship.rs/) for the matching configs
-- [lazygit](https://github.com/jesseduffield/lazygit) for the Git UI (`<leader>gg`)
-- Language tools for whatever you code in
-
-</details>
+- [Kitty](https://sw.kovidgoyal.net/kitty/)
+- [tmux](https://github.com/tmux/tmux)
+- [Zsh](https://www.zsh.org/)
+- [Starship](https://starship.rs/)
+- [Nerd Font](https://www.nerdfonts.com/) (recommended for icons)
+- [lazygit](https://github.com/jesseduffield/lazygit)
+- Language-specific toolchains for the languages you use
 
 ---
 
-## 🚀 Quick start
+## Install
 
-### 1. Clone the repo
+### 1. Clone the repository
 
 ```sh
 git clone https://github.com/thatsothoundotctl01-dotcom/.dotfiles.git ~/.dotfiles
 ```
 
-### 2. Back up any existing Neovim setup
+### 2. Back up any existing Neovim data
 
 ```sh
-mv ~/.config/nvim      ~/.config/nvim.bak      2>/dev/null
+mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
 mv ~/.local/share/nvim ~/.local/share/nvim.bak 2>/dev/null
 mv ~/.local/state/nvim ~/.local/state/nvim.bak 2>/dev/null
-mv ~/.cache/nvim       ~/.cache/nvim.bak       2>/dev/null
+mv ~/.cache/nvim ~/.cache/nvim.bak 2>/dev/null
 ```
 
-### 3. Link the Neovim config
+### 3. Clone the LazyVim starter and add these customizations
 
 ```sh
-ln -s ~/.dotfiles/nvim ~/.config/nvim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 ```
 
-### 4. Launch
+The starter provides the base LazyVim setup. These commands layer this repository's Neovim settings and plugins onto it. The rename is needed because `init.lua` loads `config.lazy`.
+
+### 4. (Optional) Install the terminal configs
+
+Review the Zsh config first and update its machine-specific PATH before installing. Then link whichever configs you use:
+
+```sh
+mkdir -p ~/.config/kitty
+ln -s ~/.dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -s ~/.dotfiles/.tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/.zsh/.zshrc ~/.zshrc
+ln -s ~/.dotfiles/.zsh/starship.toml ~/.config/starship.toml
+```
+
+### 5. Launch Neovim
 
 ```sh
 nvim
 ```
 
-On first launch, `lazy.nvim` bootstraps itself and installs every configured plugin. Wait for it to finish, restart Neovim, then run `:LazyHealth` to confirm everything loaded.
+## Troubleshooting
 
-> [!WARNING]
-> **Bootstrap note:** `init.lua` loads `config.lazy`, which Neovim resolves to `lua/config/lazy.lua`.
-> The tracked file is currently named `nvim/lua/config/lazys.lua`.
-> Make the filename and the `require()` in `init.lua` agree before launching. Linux filesystems are case-sensitive.
->
-> ```sh
-> mv ~/.dotfiles/nvim/lua/config/lazys.lua ~/.dotfiles/nvim/lua/config/lazy.lua
-> ```
+### Two file explorers show up at once
 
----
-
-## 🧩 Shell & terminal configs
-
-All optional. Review each file and adapt it to your machine before linking.
-
-| File | Purpose | Link to |
-| --- | --- | --- |
-| `kitty/kitty.conf` | Kitty settings | `~/.config/kitty/kitty.conf` |
-| `.tmux/tmux.conf` | tmux settings | `~/.tmux.conf` |
-| `.zsh/.zshrc` | Zsh startup | `~/.zshrc` |
-| `.zsh/starship.toml` | Starship prompt | `~/.config/starship.toml` |
-
-```sh
-mkdir -p ~/.config/kitty
-
-ln -s ~/.dotfiles/kitty/kitty.conf     ~/.config/kitty/kitty.conf
-ln -s ~/.dotfiles/.tmux/tmux.conf      ~/.tmux.conf
-ln -s ~/.dotfiles/.zsh/.zshrc          ~/.zshrc
-ln -s ~/.dotfiles/.zsh/starship.toml   ~/.config/starship.toml
-```
-
-> [!IMPORTANT]
-> `.zshrc` contains a machine-specific path. Edit it for your environment before linking.
-> If a target file already exists, `ln -s` will fail; move the old file aside first (e.g. `mv ~/.zshrc ~/.zshrc.bak`).
-
----
-
-## ⌨️ Notable shortcuts
-
-Custom mappings from the plugin config. `<leader>` is `Space` (LazyVim default).
-
-| Key | Action |
-| :-- | --- |
-| `<leader>e` | Toggle Neo-tree file explorer |
-| `<leader>o` | Focus Neo-tree file explorer |
-| `<F6>` / `<leader>rr` | Save the current file and run it |
-| `<leader>rf` | Run the current file |
-| `<leader>rc` | Close the code-runner terminal |
-| `jj` *(Insert mode)* | Return to Normal mode |
-
-Press `Space` and wait a second to see every available key in the which-key menu.
-
----
-
-## 🩺 Troubleshooting
-
-<details>
-<summary><b>Two file explorers show up at once</b></summary>
-
-<br>
-
-Neo-tree and the Snacks explorer are both enabled. Disable the one you don't want, for example Snacks:
+Neo-tree and Snacks are both enabled. If you prefer only one, disable the other in your config.
 
 ```lua
 return {
@@ -205,63 +132,47 @@ return {
 }
 ```
 
-</details>
+### Icons display as boxes or question marks
 
-<details>
-<summary><b>Icons show as boxes or question marks</b></summary>
+Install a Nerd Font and set it as the active font in your terminal.
 
-<br>
+### `nvim: command not found`
 
-Install a Nerd Font and set it as your terminal font.
+Open a new terminal or run:
 
-</details>
+```sh
+source ~/.bashrc
+```
 
-<details>
-<summary><b><code>module 'config.lazy' not found</code> on startup</b></summary>
+or:
 
-<br>
+```sh
+source ~/.zshrc
+```
 
-Rename `lazys.lua` to `lazy.lua`, or change the `require()` in `init.lua` to match. See the bootstrap note above.
+If your PATH was updated in a shell profile, restart the terminal session before retrying.
 
-</details>
+### `module 'config.lazy' not found`
 
-<details>
-<summary><b><code>nvim: command not found</code></b></summary>
-
-<br>
-
-Open a new terminal, or run `source ~/.bashrc` (or `~/.zshrc`) so the new `PATH` entry loads.
-
-</details>
-
-<details>
-<summary><b>Treesitter or Mason errors on first launch</b></summary>
-
-<br>
-
-Make sure `build-essential` is installed, restart `nvim`, then run `:checkhealth` and look for `ERROR` entries.
-
-</details>
+Ensure your file name and the require path match. This repo currently references `config.lazy` from `init.lua`, so the actual file in `nvim/lua/config/` should match that module name.
 
 ---
 
-## 🔄 Updating
+## Updating plugins
 
-**Plugins:** open Neovim and run `:Lazy`, then press `U` to update. `lazy-lock.json` records the exact plugin versions, so commit it to get an identical setup on every machine.
+Open Neovim and run:
 
-**Dotfiles:**
+```vim
+:Lazy
+```
+
+This launches the Lazy plugin manager so you can update, install, or remove plugins. The `lazy-lock.json` file pins the plugin versions used by the current setup.
+
+To pull the latest repo updates:
 
 ```sh
 cd ~/.dotfiles && git pull
 ```
-
-## 🧹 Uninstall
-
-```sh
-rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
-```
-
-Since the config is symlinked, this removes only the link and Neovim's data; your `~/.dotfiles` repo stays intact.
 
 ---
 
