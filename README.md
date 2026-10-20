@@ -1,9 +1,6 @@
 <div align="center">
 
-# 🗂️ .dotfiles
-
-**My personal Neovim-first development setup**
-LazyVim · Kitty · tmux · Zsh · Starship
+#  .dotfiles
 
 <br>
 
@@ -41,10 +38,6 @@ LazyVim · Kitty · tmux · Zsh · Starship
 
 ## 📦 Requirements
 
-> [!NOTE]
-> The commands below target **Ubuntu / Debian on x86_64**. On macOS use `brew install neovim git`.
-
-### Required
 
 <details open>
 <summary><b>Neovim 0.12.5</b></summary>
@@ -55,7 +48,7 @@ LazyVim · Kitty · tmux · Zsh · Starship
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc   # use ~/.zshrc if you use Zsh
+echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc 
 source ~/.bashrc
 nvim --version | head -1
 ```
@@ -91,12 +84,6 @@ sudo apt install -y build-essential curl unzip ripgrep fd-find fzf
 - [lazygit](https://github.com/jesseduffield/lazygit) for the Git UI
 - Language tools for the languages you use
 
-> [!NOTE]
-> The Neovim config asks **Mason** to install a selection of language servers and formatters.
-> Running code also requires the relevant language runtime or compiler.
-
----
-
 ## 🚀 Neovim setup
 
 ### 1. Clone the repository
@@ -111,19 +98,12 @@ git clone https://github.com/thatsothoundotctl01-dotcom/.dotfiles.git ~/.dotfile
 mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
 mv ~/.local/share/nvim ~/.local/share/nvim.bak 2>/dev/null
 mv ~/.local/state/nvim ~/.local/state/nvim.bak 2>/dev/null
-mv ~/.cache/nvim ~/.cache/nvim.bak 2>/dev/null
-```
+mv ~/.cache/nvim ~/.cache/nvim.bak 2>/dev/null 
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+``` 
 
-### 3. Link the config into Neovim
-
-```sh
-mkdir -p ~/.config/nvim/lua
-ln -s ~/.dotfiles/init.lua ~/.config/nvim/init.lua
-ln -s ~/.dotfiles/nvim/lua/config ~/.config/nvim/lua/config
-ln -s ~/.dotfiles/nvim/lua/plugins ~/.config/nvim/lua/plugins
-```
-
-### 4. Launch
+### 3. Launch
 
 ```sh
 nvim
