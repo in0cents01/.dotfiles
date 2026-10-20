@@ -1,9 +1,9 @@
 <div align="center">
 
-# 🔌 dotfiles-plugins
+#  dotfiles
 
 **My personal Neovim-first development setup**
-LazyVim · Kitty · tmux · Zsh · Starship
+LazyVim · Kitty · tmux · Zsh 
 
 <br>
 
@@ -33,7 +33,7 @@ LazyVim · Kitty · tmux · Zsh · Starship
 | 🟢 | **Neovim** | LazyVim configuration, plugin specs, language servers, formatters, Treesitter parsers, and code-running shortcuts |
 | 🐱 | **Kitty** | Terminal appearance, tabs, layouts, and key bindings |
 | 🪟 | **tmux** | Compact status bar, pane styling, mouse support, and Zsh as the default shell |
-| 🐚 | **Zsh + Starship** | Shell initialization and a Catppuccin-inspired prompt |
+| 🐚 | **Zsh** | Shell initialization and a Catppuccin-inspired prompt |
 
 ---
 
@@ -59,7 +59,7 @@ LazyVim · Kitty · tmux · Zsh · Starship
 ### 1. Clone the repository
 
 ```sh
-git clone https://github.com/thatsothoundotctl01-dotcom/dotfiles-plugins.git ~/dotfiles-plugins
+git clone https://github.com/thatsothoundotctl01-dotcom/.dotfiles.git
 ```
 
 ### 2. Link the config into Neovim
