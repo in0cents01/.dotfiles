@@ -1,0 +1,9 @@
+[user]
+	email = thatsothoundotctl01@gmail.com
+	name = That Sothoun
+
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = main
