@@ -32,7 +32,7 @@
 | 🟢 | **Neovim** | LazyVim configuration, plugin specs, language servers, formatters, Treesitter parsers, and code-running shortcuts |
 | 🐱 | **Kitty** | Terminal appearance, tabs, layouts, and key bindings |
 | 🪟 | **tmux** | Compact status bar, pane styling, mouse support, and Zsh as the default shell |
-| 🐚 | **Zsh + Starship** | Shell initialization and a Catppuccin-inspired prompt |
+| 🐚 | **zsh** | Shell initialization and a Catppuccin-inspired prompt |
 
 ---
 
