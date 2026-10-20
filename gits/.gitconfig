@@ -1,9 +1,0 @@
-[user]
-	email = thatsothoundotctl01@gmail.com
-	name = thatsothoun
-
-[core]
-	editor = nvim
-
-[init]
-	defaultBranch = main
