@@ -109,16 +109,6 @@ rm -rf ~/.config/nvim/.git
 nvim
 ```
 
-On first launch, `lazy.nvim` bootstraps itself and installs every configured plugin. Wait for it to finish, then restart Neovim and run `:LazyHealth` to confirm everything loaded.
-
-> [!WARNING]
-> **Bootstrap note:** `init.lua` loads `config.lazy`, which Neovim resolves to `lua/config/lazy.lua`.
-> The tracked file in this repository is currently named `nvim/lua/config/lazys.lua`.
-> Make the module filename and the `require()` in `init.lua` agree before launching Neovim.
-> Linux filesystems are case-sensitive.
-
----
-
 ## 🧩 Optional configurations
 
 Review each file and adapt it to your machine before linking or copying it.
@@ -204,46 +194,3 @@ Install a Nerd Font and set it as your terminal font.
 
 </details>
 
-<details>
-<summary><b><code>module 'config.lazy' not found</code> on startup</b></summary>
-
-<br>
-
-See the bootstrap warning above: rename `lazys.lua` to `lazy.lua`, or change the `require()` in `init.lua` to match.
-
-</details>
-
-<details>
-<summary><b><code>nvim: command not found</code></b></summary>
-
-<br>
-
-Open a new terminal, or run `source ~/.bashrc` (or `~/.zshrc`) so the new `PATH` entry is loaded.
-
-</details>
-
----
-
-## 🔄 Updating plugins
-
-Open Neovim and run:
-
-```vim
-:Lazy
-```
-
-to manage plugins. The `lazy-lock.json` file records the exact plugin versions in use, so commit it if you want the same setup on every machine.
-
-To pull the latest dotfiles:
-
-```sh
-cd ~/.dotfiles && git pull
-```
-
----
-
-<div align="center">
-
-Made with ☕ and Lua
-
-</div>
