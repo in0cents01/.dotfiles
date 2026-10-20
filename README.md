@@ -1,6 +1,6 @@
 <div align="center">
 
-#  .dotfiles
+# .dotfiles
 
 <br>
 
@@ -14,77 +14,99 @@
 
 <br>
 
-[Features](#-whats-included) •
-[Requirements](#-requirements) •
-[Install](#-neovim-setup) •
-[Shortcuts](#-notable-neovim-shortcuts) •
-[Troubleshooting](#-troubleshooting) •
-[Updating](#-updating-plugins)
+[What's inside](#-whats-inside) ·
+[Structure](#-repository-structure) ·
+[Requirements](#-requirements) ·
+[Install](#-installation) ·
+[Shortcuts](#%EF%B8%8F-keybindings) ·
+[Troubleshooting](#-troubleshooting)
 
 </div>
 
 ---
 
-## ✨ What's included
+## ✨ What's inside
 
-| | Component | What you get |
+| | Tool | What you get |
 | :-: | --- | --- |
-| 🟢 | **Neovim** | LazyVim configuration, plugin specs, language servers, formatters, Treesitter parsers, and code-running shortcuts |
-| 🐱 | **Kitty** | Terminal appearance, tabs, layouts, and key bindings |
-| 🪟 | **tmux** | Compact status bar, pane styling, mouse support, and Zsh as the default shell |
-| 🐚 | **zsh** | Shell initialization and a Catppuccin-inspired prompt |
+| 🟢 | **Neovim** | LazyVim base with custom plugins, 19 language servers, 30+ formatters/linters via Mason, Treesitter parsers, and a one-key code runner |
+| 🐱 | **Kitty** | Translucent blurred terminal, powerline tabs, smooth cursor trail, split/stack/tall layouts |
+| 🪟 | **tmux** | Top status bar, centered windows, mouse support, thin pane borders |
+| 🐚 | **Zsh + Starship** | Minimal Zsh startup with a Catppuccin Mocha powerline prompt |
+| 🧩 | **VS Code** | Clean UI with Vim keybindings that mirror the Neovim setup |
+| 🎨 | **Look & feel** | Catppuccin Mocha palette, Iosevka Nerd Font, italics disabled everywhere |
+
+---
+
+## 📁 Repository structure
+
+```text
+.dotfiles/
+├── init.lua                  # Neovim entry point
+├── lazyvim.json              # LazyVim version and extras
+├── lazy-lock.json            # Pinned plugin versions
+├── stylelua.toml             # StyLua formatter rules (2 spaces, 120 cols)
+├── nvim/
+│   └── lua/
+│       ├── config/           # autocmds, keymaps, options, lazy.nvim bootstrap
+│       └── plugins/          # colorschemes, dashboard, editor, tree, runner
+├── kitty/
+│   └── kitty.conf            # Terminal settings
+├── .tmux/
+│   └── tmux.conf             # tmux settings
+├── .zsh/
+│   ├── .zshrc                # Zsh startup file
+│   └── starship.toml         # Starship prompt theme
+├── .vscode/
+│   └── setting.json          # VS Code settings
+└── git/
+    └── .gitconfig            # Git identity and defaults
+```
 
 ---
 
 ## 📦 Requirements
 
+**Required for Neovim**
 
-<details open>
-<summary><b>Neovim 0.12.5</b></summary>
+| Tool | Why |
+| --- | --- |
+| [Neovim](https://neovim.io/) 0.12.5 | The editor |
+| Git | Plugin installation |
+| `build-essential`, `curl`, `unzip` | Compiling Treesitter parsers, Mason downloads |
+| `ripgrep`, `fd-find`, `fzf` | Search in Telescope and Snacks |
+| A [Nerd Font](https://www.nerdfonts.com/) v3+ | Icons (this setup uses **Iosevka Nerd Font Mono**) |
+
+**Optional**
+
+[Kitty](https://sw.kovidgoyal.net/kitty/) · [tmux](https://github.com/tmux/tmux) · [Zsh](https://www.zsh.org/) · [Starship](https://starship.rs/) · [lazygit](https://github.com/jesseduffield/lazygit)
+
+<details>
+<summary><b>Install everything on Ubuntu / Debian</b></summary>
 
 <br>
 
 ```sh
+# Neovim 0.12.5
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc 
+echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
 source ~/.bashrc
-nvim --version | head -1
+
+# Git, build tools, and search helpers
+sudo apt install -y git build-essential curl unzip ripgrep fd-find fzf
+
+# Optional terminal stack
+sudo apt install -y kitty tmux zsh
+curl -sS https://starship.rs/install.sh | sh
 ```
 
 </details>
 
-<details open>
-<summary><b>Git</b></summary>
+---
 
-<br>
-
-```sh
-sudo apt install git -y && git --version
-```
-
-</details>
-
-<details open>
-<summary><b>Build tools and search helpers</b> (needed by Treesitter, Telescope, and Snacks)</summary>
-
-<br>
-
-```sh
-sudo apt install -y build-essential curl unzip ripgrep fd-find fzf
-```
-
-</details>
-
-### Optional
-
-- [Kitty](https://sw.kovidgoyal.net/kitty/), [tmux](https://github.com/tmux/tmux), [Zsh](https://www.zsh.org/), and [Starship](https://starship.rs/) for the matching configs
-- A [Nerd Font](https://www.nerdfonts.com/) (v3.0+) so icons display correctly
-- [lazygit](https://github.com/jesseduffield/lazygit) for the Git UI
-- Language tools for the languages you use
-
-## 🚀 Neovim setup
+## 🚀 Installation
 
 ### 1. Clone the repository
 
@@ -92,85 +114,180 @@ sudo apt install -y build-essential curl unzip ripgrep fd-find fzf
 git clone https://github.com/thatsothoundotctl01-dotcom/.dotfiles.git ~/.dotfiles
 ```
 
-### 2. Back up any existing config
+### 2. Back up your existing config
 
 ```sh
-mv ~/.config/nvim ~/.config/nvim.bak 2>/dev/null
+mv ~/.config/nvim      ~/.config/nvim.bak      2>/dev/null
 mv ~/.local/share/nvim ~/.local/share/nvim.bak 2>/dev/null
 mv ~/.local/state/nvim ~/.local/state/nvim.bak 2>/dev/null
-mv ~/.cache/nvim ~/.cache/nvim.bak 2>/dev/null 
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-``` 
+mv ~/.cache/nvim       ~/.cache/nvim.bak       2>/dev/null
+```
 
-### 3. Launch
+### 3. Link the Neovim config
+
+```sh
+mkdir -p ~/.config/nvim
+ln -s ~/.dotfiles/init.lua        ~/.config/nvim/init.lua
+ln -s ~/.dotfiles/nvim/lua        ~/.config/nvim/lua
+ln -s ~/.dotfiles/lazyvim.json    ~/.config/nvim/lazyvim.json
+ln -s ~/.dotfiles/lazy-lock.json  ~/.config/nvim/lazy-lock.json
+ln -s ~/.dotfiles/stylelua.toml   ~/.config/nvim/stylua.toml
+```
+
+### 4. Launch
 
 ```sh
 nvim
 ```
 
-## 🧩 Optional configurations
+The first start installs lazy.nvim, every plugin, the language servers, and the Treesitter parsers. Give it a minute.
 
-Review each file and adapt it to your machine before linking or copying it.
+### 5. Link the other tools (optional)
 
-| File | Purpose | Install as |
-| --- | --- | --- |
-| `kitty/kitty.conf` | Kitty settings | `~/.config/kitty/kitty.conf` |
-| `.tmux/tmux.conf` | tmux settings | `~/.tmux.conf` |
-| `.zsh/.zshrc` | Zsh startup settings | `~/.zshrc` |
-| `.zsh/starship.toml` | Starship prompt | `~/.config/starship.toml` |
-
-<details>
-<summary><b>Example: install the Kitty config</b></summary>
-
-<br>
+| Source | Link to |
+| --- | --- |
+| `kitty/kitty.conf` | `~/.config/kitty/kitty.conf` |
+| `.tmux/tmux.conf` | `~/.tmux.conf` |
+| `.zsh/.zshrc` | `~/.zshrc` |
+| `.zsh/starship.toml` | `~/.config/starship.toml` |
+| `git/.gitconfig` | `~/.gitconfig` |
 
 ```sh
 mkdir -p ~/.config/kitty
-ln -s ~/.dotfiles/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -s ~/.dotfiles/kitty/kitty.conf     ~/.config/kitty/kitty.conf
+ln -s ~/.dotfiles/.tmux/tmux.conf      ~/.tmux.conf
+ln -s ~/.dotfiles/.zsh/.zshrc          ~/.zshrc
+ln -s ~/.dotfiles/.zsh/starship.toml   ~/.config/starship.toml
 ```
+
+> [!IMPORTANT]
+> Review these files before linking them:
+> - `.zsh/.zshrc` adds a machine-specific path (`/home/ts-concept/.local/bin`) to `PATH`. Change it to your own home directory.
+> - `git/.gitconfig` contains my name and email. Replace them with yours.
+> - `.tmux/tmux.conf` sets Zsh at `/usr/bin/zsh` as the default shell.
+
+---
+
+## ⌨️ Keybindings
+
+`<leader>` is `Space`. Press it and wait a moment to open the which-key menu.
+
+### Neovim
+
+| Key | Mode | Action |
+| :-- | :-: | --- |
+| `jj` | Insert | Back to Normal mode |
+| `<leader>e` | Normal | Toggle Neo-tree explorer |
+| `<leader>o` | Normal | Focus Neo-tree explorer |
+| `<F6>` / `<leader>rr` | Normal | Save and run the current file |
+| `<leader>rf` | Normal | Run the current file |
+| `<leader>rc` | Normal | Close the runner terminal |
+
+**Code runner** supports Python, JavaScript, TypeScript, Lua, Bash, C, C++, Rust, Go, Java, PHP, Ruby, HTML, and JSON. Output opens in a bottom terminal split.
+
+### Kitty
+
+| Key | Action |
+| :-- | --- |
+| `Ctrl+Shift+T` | New tab in the current directory |
+| `Ctrl+Shift+Enter` | New window in the current directory |
+| `Ctrl+Alt+←` / `→` | Previous / next tab |
+| `Shift+Scroll` | Switch tabs |
+| `Ctrl+Shift+=` / `-` / `0` | Increase / decrease / reset font size |
+| `Ctrl+Shift+F5` | Reload config |
+
+### VS Code (Vim extension)
+
+| Key | Action |
+| :-- | --- |
+| `jj` | Exit insert mode |
+| `<leader>w` / `<leader>q` | Save / close editor |
+| `<leader>f` / `<leader>g` | Quick open / search in files |
+| `<leader>p` | Command palette |
+| `<leader>e` / `<leader>t` | Toggle sidebar / terminal |
+| `<leader>r` / `<leader>a` | Rename symbol / quick fix |
+| `H` / `L` | Start / end of line |
+
+---
+
+## Neovim details
+
+<details>
+<summary><b>Language support</b></summary>
+
+<br>
+
+**Language servers:** clangd, pyright, vtsls, html, cssls, jsonls, yamlls, bashls, lua_ls, rust_analyzer, gopls, jdtls, intelephense, dockerls, tailwindcss, kotlin, ruby_lsp, zls, neocmake
+
+**Formatters and linters (Mason):** clang-format, ruff, black, prettier, eslint-lsp, stylua, gofumpt, shfmt, shellcheck, sql-formatter, cmakelang, cmakelint
+
+**Treesitter:** bash, c, cpp, css, go, html, java, javascript, json, kotlin, lua, markdown, php, python, regex, ruby, rust, sql, toml, tsx, typescript, vue, yaml, zig, and more
 
 </details>
 
 <details>
-<summary><b>Example: install tmux, Zsh, and Starship configs</b></summary>
+<summary><b>Colorschemes</b></summary>
 
 <br>
 
-```sh
-ln -s ~/.dotfiles/.tmux/tmux.conf ~/.tmux.conf
-ln -s ~/.dotfiles/.zsh/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/.zsh/starship.toml ~/.config/starship.toml
-```
+Tokyonight is the default, and the setup also loads Catppuccin, Gruvbox, Kanagawa, Rose Pine, Nightfox, Everforest, Flexoki, Monokai Pro, Bamboo, and others. All are lazy-loaded, so switching is instant with `:colorscheme <name>`. Italics are stripped from every highlight group.
 
 </details>
 
-> [!IMPORTANT]
-> The Zsh startup file includes a machine-specific path. Edit it for your environment before installing it.
+<details>
+<summary><b>Plugins added on top of LazyVim</b></summary>
+
+<br>
+
+`neo-tree.nvim` · `code_runner.nvim` · `blink.cmp` · `lualine.nvim` · `snacks.nvim` (custom NEOVIM dashboard) · `nvim-treesitter` · `mason.nvim` · `nvim-lspconfig`
+
+</details>
 
 ---
 
-## ⌨️ Notable Neovim shortcuts
+## 🔄 Updating
 
-Custom mappings defined in the plugin configuration. `<leader>` is the leader key configured by LazyVim (`Space` by default).
+```sh
+cd ~/.dotfiles && git pull
+```
 
-| Key | Action |
-| :-- | --- |
-| `<leader>e` | Toggle the Neo-tree file explorer |
-| `<leader>o` | Focus the Neo-tree file explorer |
-| `<F6>` or `<leader>rr` | Save the current file and run it |
-| `<leader>rf` | Run the current file |
-| `<leader>rc` | Close the code-runner terminal |
-| `jj` *(Insert mode)* | Return to Normal mode |
+Then, inside Neovim:
 
-Press `Space` and wait a second in Neovim to see every available key in the which-key menu.
+| Command | What it does |
+| --- | --- |
+| `:Lazy sync` | Install, update, and clean plugins |
+| `:Lazy restore` | Roll back to the versions in `lazy-lock.json` |
+| `:Mason` | Manage language servers and formatters |
+| `:checkhealth` | Diagnose problems |
 
 ---
 
 ## 🩺 Troubleshooting
 
 <details>
-<summary><b>Two file explorers show up at once</b></summary>
+<summary><b>Neovim errors with <code>module 'config.lazy' not found</code></b></summary>
+
+<br>
+
+`init.lua` requires `config.lazy`, but the bootstrap file in this repo is named `lazys.lua`. Rename it:
+
+```sh
+mv ~/.dotfiles/nvim/lua/config/lazys.lua ~/.dotfiles/nvim/lua/config/lazy.lua
+```
+
+</details>
+
+<details>
+<summary><b>Lua syntax error in <code>autocmds.lua</code> or <code>keymaps.lua</code></b></summary>
+
+<br>
+
+Remove the stray text at the end of these files: the word `autocmds` after the last block in `autocmds.lua`, and `#update keymap.lua` after the `jj` mapping in `keymaps.lua`. Lua does not accept either.
+
+</details>
+
+<details>
+<summary><b>Two file explorers appear at once</b></summary>
 
 <br>
 
@@ -190,7 +307,18 @@ return {
 
 <br>
 
-Install a Nerd Font and set it as your terminal font.
+Install a Nerd Font and set it as your terminal font. Kitty and VS Code are configured for `Iosevka Nerd Font Mono`.
 
 </details>
+
+<details>
+<summary><b>The code runner does nothing for my language</b></summary>
+
+<br>
+
+The runner calls the language's own tool (`python3`, `node`, `go`, `cargo`, and so on), so it must be installed and on your `PATH`.
+
+</details>
+
+---
 
