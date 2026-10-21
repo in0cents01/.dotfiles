@@ -36,34 +36,6 @@
 | 🧩 | **VS Code** | Clean UI with Vim keybindings that mirror the Neovim setup |
 | 🎨 | **Look & feel** | Catppuccin Mocha palette, Iosevka Nerd Font, italics disabled everywhere |
 
----
-
-## 📁 Repository structure
-
-```text
-.dotfiles/
-├── init.lua                  # Neovim entry point
-├── lazyvim.json              # LazyVim version and extras
-├── lazy-lock.json            # Pinned plugin versions
-├── stylelua.toml             # StyLua formatter rules (2 spaces, 120 cols)
-├── nvim/
-│   └── lua/
-│       ├── config/           # autocmds, keymaps, options, lazy.nvim bootstrap
-│       └── plugins/          # colorschemes, dashboard, editor, tree, runner
-├── kitty/
-│   └── kitty.conf            # Terminal settings
-├── .tmux/
-│   └── tmux.conf             # tmux settings
-├── .zsh/
-│   ├── .zshrc                # Zsh startup file
-│   └── starship.toml         # Starship prompt theme
-├── .vscode/
-│   └── setting.json          # VS Code settings
-└── git/
-    └── .gitconfig            # Git identity and defaults
-```
-
----
 
 ## 📦 Requirements
 
