@@ -23,11 +23,11 @@
 
 | Tool | Purpose |
 | :-- | :-- |
-| `[Neovim]`(https://neovim.io/) `0.12.5` | Editor |
+| `Neovim 0.12.5` | Editor |
 | `git` | Plugin installation |
 | `build-essential` `curl` `unzip` | Treesitter parsers and Mason downloads |
 | `ripgrep` `fd-find` `fzf` | Fuzzy search |
-| `[Nerd Font]`(https://www.nerdfonts.com/) | Icons (uses **Iosevka Nerd Font Mono**) |
+| `Nerd Font`| Icons (uses **Iosevka Nerd Font Mono**) |
 
 
 ## Neovim 
