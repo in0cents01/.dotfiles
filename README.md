@@ -34,19 +34,11 @@
 
 
 ```sh
-# Neovim 0.12.5
 curl -LO https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.tar.gz
 sudo rm -rf /opt/nvim-linux-x86_64
 sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
-source ~/.bashrc
 
-# Tools
-sudo apt install -y git build-essential curl unzip ripgrep fd-find fzf
-
-# Optional
-sudo apt install -y kitty tmux zsh
-curl -sS https://starship.rs/install.sh | sh
 ```
 
 
@@ -76,10 +68,6 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/
 nvim
 ```
 
-**4.  launch**
-```sh
-nvim 
-```
 
 
 
