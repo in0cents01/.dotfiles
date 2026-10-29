@@ -42,4 +42,5 @@ command -v starship >/dev/null && eval "$(starship init zsh)"
 # check 
 # which fzf zoxide starship eza
 # ls /usr/share/zsh-autosuggestions /usr/share/zsh-syntax-highlighting
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH" 
 
