@@ -1,0 +1,16 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Editor temporary and backup files
+*.swp
+*.swo
+*~
+
+# Lua bytecode
+*.luac
+
+# Local environment files (keep example templates)
+.env
+.env.*
+!.env.example
