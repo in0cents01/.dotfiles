@@ -1,23 +1,137 @@
 {
+  // ---------- Font ----------
   "editor.fontFamily": "'Iosevka Nerd Font Mono', monospace",
   "terminal.integrated.fontFamily": "'Iosevka Nerd Font Mono'",
   "editor.fontLigatures": true,
   "editor.fontSize": 15,
   "editor.lineHeight": 1.5,
+  "terminal.integrated.fontSize": 14,
 
-  // --- Remove Rulers & Clean UI ---
-  "editor.rulers": [],
+  // ---------- Theme ----------
   "workbench.colorTheme": "Default Dark Modern",
-  "workbench.activityBar.location": "hidden",
-  "workbench.statusBar.visible": true,
-  "editor.renderWhitespace": "none",
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.overviewRulerBorder": false,
+  "workbench.iconTheme": "vs-seti",
+
+  // One flat dark color, no harsh borders
+  "workbench.colorCustomizations": {
+    "editor.background": "#15171c",
+    "sideBar.background": "#15171c",
+    "sideBar.border": "#15171c",
+    "sideBarSectionHeader.background": "#15171c",
+    "sideBarSectionHeader.border": "#15171c",
+    "activityBar.background": "#15171c",
+    "activityBar.border": "#15171c",
+    "panel.background": "#15171c",
+    "panel.border": "#1f2229",
+    "terminal.background": "#15171c",
+    "titleBar.activeBackground": "#15171c",
+    "titleBar.inactiveBackground": "#15171c",
+    "titleBar.border": "#15171c",
+    "statusBar.background": "#15171c",
+    "statusBar.noFolderBackground": "#15171c",
+    "statusBar.border": "#15171c",
+    "statusBar.foreground": "#7d8590",
+    "tab.activeBackground": "#15171c",
+    "tab.inactiveBackground": "#15171c",
+    "tab.border": "#15171c",
+    "tab.activeBorder": "#15171c",
+    "tab.activeBorderTop": "#7aa2f7",
+    "tab.unfocusedActiveBorderTop": "#3b4261",
+    "tab.activeForeground": "#c0caf5",
+    "tab.inactiveForeground": "#565f89",
+    "editorGroupHeader.tabsBackground": "#15171c",
+    "editorGroupHeader.tabsBorder": "#15171c",
+    "editorGroup.border": "#15171c",
+    "editorIndentGuide.background1": "#1f2229",
+    "editorIndentGuide.activeBackground1": "#3b4261",
+    "editorLineNumber.foreground": "#3b4261",
+    "editorLineNumber.activeForeground": "#9aa5ce",
+    "editor.lineHighlightBackground": "#1b1e25",
+    "editor.lineHighlightBorder": "#00000000",
+    "editorWidget.border": "#00000000",
+    "editorCursor.foreground": "#7aa2f7",
+    "scrollbar.shadow": "#00000000",
+    "scrollbarSlider.background": "#ffffff10",
+    "scrollbarSlider.hoverBackground": "#ffffff20",
+    "list.activeSelectionBackground": "#232733",
+    "list.inactiveSelectionBackground": "#1b1e25",
+    "list.hoverBackground": "#1b1e25",
+    "focusBorder": "#00000000"
+  },
+
+  // ---------- Layout: files + extensions on the RIGHT ----------
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
+  "workbench.panel.opensMaximized": "never",
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+
+  // ---------- Remove chat / Copilot UI ----------
+  "chat.disableAIFeatures": true,
+  "chat.commandCenter.enabled": false,
+  "github.copilot.enable": {
+    "*": false
+  },
+  "editor.inlineSuggest.enabled": false,
+
+  // ---------- Clean UI ----------
   "window.commandCenter": false,
   "window.menuBarVisibility": "toggle",
+  "window.title": "${activeEditorShort}",
+  "workbench.layoutControl.enabled": false,
+  "workbench.statusBar.visible": true,
+  "workbench.startupEditor": "none",
+  "workbench.tips.enabled": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.tabActionLocation": "right",
+  "workbench.editor.showIcons": false,
+  "workbench.tree.indent": 16,
+  "workbench.tree.renderIndentGuides": "none",
+  "explorer.compactFolders": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
+  "update.showReleaseNotes": false,
   "breadcrumbs.enabled": false,
 
-  // --- Vim basics ---
+  // ---------- Editor look ----------
+  "editor.rulers": [],
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
+  "editor.renderLineHighlight": "line",
+  "editor.lineNumbers": "relative",
+  "editor.lineNumbersMinChars": 3,
+  "editor.padding.top": 14,
+  "editor.glyphMargin": false,
+  "editor.folding": false,
+  "editor.lightbulb.enabled": "off",
+  "editor.occurrencesHighlight": "off",
+  "editor.selectionHighlight": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.overviewRulerBorder": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.guides.indentation": true,
+  "editor.guides.bracketPairs": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.stickyScroll.enabled": false,
+  "editor.wordWrap": "on",
+
+  // ---------- NO animation ----------
+  "workbench.reduceMotion": "on",
+  "editor.smoothScrolling": false,
+  "editor.cursorSmoothCaretAnimation": "off",
+  "editor.cursorBlinking": "solid",
+  "workbench.list.smoothScrolling": false,
+  "terminal.integrated.smoothScrolling": false,
+  "terminal.integrated.cursorBlinking": false,
+  "editor.hover.delay": 600,
+
+  // ---------- Behavior ----------
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "editor.accessibilitySupport": "off",
+
+  // ---------- Vim basics ----------
   "vim.leader": "<space>",
   "vim.useSystemClipboard": true,
   "vim.hlsearch": true,
@@ -28,181 +142,51 @@
 
   // jj to escape
   "vim.insertModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "j",
-        "j"
-      ],
-      "after": [
-        "<Esc>"
-      ]
-    }
+    { "before": ["j", "j"], "after": ["<Esc>"] }
   ],
 
-  // Normal mode shortcuts
   "vim.normalModeKeyBindingsNonRecursive": [
     // Save / close
-    {
-      "before": [
-        "<leader>",
-        "w"
-      ],
-      "commands": [
-        "workbench.action.files.save"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "q"
-      ],
-      "commands": [
-        "workbench.action.closeActiveEditor"
-      ]
-    },
+    { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"] },
+
     // Find things
-    {
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "g"
-      ],
-      "commands": [
-        "workbench.action.findInFiles"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "p"
-      ],
-      "commands": [
-        "workbench.action.showCommands"
-      ]
-    },
-    // Toggle sidebar / terminal
-    {
-      "before": [
-        "<leader>",
-        "e"
-      ],
-      "commands": [
-        "workbench.action.toggleSidebarVisibility"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "t"
-      ],
-      "commands": [
-        "workbench.action.terminal.toggleTerminal"
-      ]
-    },
+    { "before": ["<leader>", "f"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<leader>", "g"], "commands": ["workbench.action.findInFiles"] },
+    { "before": ["<leader>", "p"], "commands": ["workbench.action.showCommands"] },
+
+    // Right sidebar: files, extensions, hide
+    { "before": ["<leader>", "e"], "commands": ["workbench.view.explorer"] },
+    { "before": ["<leader>", "x"], "commands": ["workbench.view.extensions"] },
+    { "before": ["<leader>", "b"], "commands": ["workbench.action.toggleSidebarVisibility"] },
+
+    // Terminal
+    { "before": ["<leader>", "t"], "commands": ["workbench.action.terminal.toggleTerminal"] },
+
+    // Tabs
+    { "before": ["<leader>", "l"], "commands": ["workbench.action.nextEditor"] },
+    { "before": ["<leader>", "k"], "commands": ["workbench.action.previousEditor"] },
+
+    // Zen mode
+    { "before": ["<leader>", "z"], "commands": ["workbench.action.toggleZenMode"] },
+
     // Code actions
-    {
-      "before": [
-        "<leader>",
-        "r"
-      ],
-      "commands": [
-        "editor.action.rename"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "editor.action.quickFix"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.goToReferences"
-      ]
-    },
+    { "before": ["<leader>", "r"], "commands": ["editor.action.rename"] },
+    { "before": ["<leader>", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+
     // Faster line movement
-    {
-      "before": [
-        "H"
-      ],
-      "after": [
-        "^"
-      ]
-    },
-    {
-      "before": [
-        "L"
-      ],
-      "after": [
-        "$"
-      ]
-    },
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["$"] },
+
     // Clear search highlight
-    {
-      "before": [
-        "<leader>",
-        "h"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    }
+    { "before": ["<leader>", "h"], "commands": [":nohl"] }
   ],
 
-  // Visual mode: keep selection when indenting
   "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
-    },
-    {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
-    }
-  ],
-
-  // Smooth and fast editor
-  "editor.minimap.enabled": false,
-  "editor.lineNumbers": "relative",
-  "editor.cursorBlinking": "smooth",
-  "editor.formatOnSave": true,
-  "editor.stickyScroll.enabled": true,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-  "files.autoSave": "onFocusChange",
-  "workbench.editor.enablePreview": false,
-  "workbench.list.smoothScrolling": true,
-  "terminal.integrated.smoothScrolling": true,
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-    "java": false
-  },
-  "chat.experimental.incrementalRendering.enabled": true,
-  "editor.smoothScrolling": true
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+    { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] }
+  ]
 }
