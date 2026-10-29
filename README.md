@@ -52,7 +52,7 @@ echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
 
 **1. Clone the repository**
 
-```sh
+```sh 
 git clone https://github.com/in0cents01/.dotfiles.git
 ```
 
@@ -72,5 +72,6 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/
 nvim
 ```
 
-Thanks everyone ! 
+Thanks everyone !
+
 
