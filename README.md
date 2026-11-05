@@ -20,7 +20,9 @@
 
 ## Preview
 
-![Neovim and tmux dotfiles preview](assets/dotfiles-preview.png)
+![Neovim and tmux dotfiles preview](assets/dotfiles-preview.png) 
+
+![Neovim and tmux dotfiles preview](assets/dotfiles-gray-preview.png) 
 
 
 ## Requirements
