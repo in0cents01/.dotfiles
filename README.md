@@ -22,7 +22,7 @@
 
 ![Neovim and tmux dotfiles preview](./assets/dotfiles-preview.png)
 
-![Neovim and tmux dotfiles gray preview](./assets/dotfiles-gray-preview.png)
+![Neovim and tmux dotfiles gray preview](./assets/dotfiles_gray.png)
 
 
 ## Requirements
@@ -36,7 +36,7 @@
 | `Nerd Font`| Icons (uses **Iosevka Nerd Font Mono**) |
 
 
-## Neovim 
+## Neovim
 
 
 ```sh
@@ -54,7 +54,7 @@ echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
 
 **1. Clone the repository**
 
-```sh 
+```sh
 git clone https://github.com/in0cents01/.dotfiles.git
 ```
 
@@ -73,6 +73,17 @@ mv ~/.cache/nvim       ~/.cache/nvim.bak       2>/dev/null
 git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/nvim/.git
 nvim
 ```
+**4. If you install nerd font(recommend iosevka nerd font)**
 
+```sh
+
+mkdir -p ~/.local/share/fonts/IosevkaNerdFont
+cd /tmp
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.zip
+unzip Iosevka.zip -d ~/.local/share/fonts/IosevkaNerdFont
+fc-cache -fv
+fc-list | grep -i "Iosevka Nerd"
+
+```
 Thanks everyone !
 
