@@ -71,9 +71,19 @@ mv ~/.cache/nvim       ~/.cache/nvim.bak       2>/dev/null
 
 ```sh
 git clone https://github.com/LazyVim/starter ~/.config/nvim && rm -rf ~/.config/nvim/.git
+```
+
+**4. Copy this config over it**
+
+```sh
+cp -r ~/.dotfiles/init.lua ~/.dotfiles/nvim ~/.config/nvim/
 nvim
 ```
-**4. If you install nerd font(recommend iosevka nerd font)**
+
+> `init.lua` bootstraps `nvim/lua/config/lazys.lua`, which loads every spec in
+> `nvim/lua/plugins/`. Run `:Lazy` once to install the plugins.
+
+**5. If you install a Nerd Font (recommended: Iosevka Nerd Font)**
 
 ```sh
 
