@@ -1,8 +1,8 @@
--- ~/.config/nvim/lua/plugins/look.lua
+-- ~/.config/nvim/lua/plugins/gray.lua
 -- Clean dark gray theme, no italics, lualine (statusline bottom, tabline top).
--- Needs a Nerd Font in your terminal for the rounded ends and icons.
+-- Needs a Nerd Font in your terminal for the icons.
 -- Works on Neovim 0.9+ (the no-italic cleanup is skipped safely if unsupported).
--- (needs { import = "plugins" } in your lazy.setup list in init.lua)
+-- (loaded automatically via { import = "plugins" })
 
 ---------------------------------------------------------------------------
 -- Options
@@ -41,7 +41,9 @@ vim.diagnostic.config({
 local function g(code)
 	return vim.fn.nr2char(code)
 end
-local round_l, round_r = g(0xe0b6), g(0xe0b4)
+-- Square corners (no rounded glyphs). For slanted corners instead use:
+--   g(0xe0ba), g(0xe0bc)   (or sharp triangles: g(0xe0b2), g(0xe0b0))
+local edge_l, edge_r = "", ""
 local branch_icon, lock_icon = g(0xe0a0), g(0xf023)
 local ico = {
 	error = g(0xf057) .. " ",
@@ -255,13 +257,13 @@ vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_gray })
 vim.api.nvim_create_autocmd("User", { pattern = "VeryLazy", callback = apply_gray })
 
 ---------------------------------------------------------------------------
--- Lualine theme
+-- Lualine theme (square blocks: a = mode, b = raised box, c = flat bar)
 ---------------------------------------------------------------------------
 local function mode(accent)
 	return {
 		a = { fg = c.bg, bg = accent, gui = "bold" },
 		b = { fg = c.fg, bg = c.bg_sel },
-		c = { fg = c.fg, bg = c.bg_alt },
+		c = { fg = c.normal, bg = c.bg_alt },
 	}
 end
 
@@ -320,18 +322,22 @@ return {
 				globalstatus = true,
 				icons_enabled = true,
 				component_separators = { left = "", right = "" },
-				section_separators = { left = round_r, right = round_l },
+				section_separators = { left = "", right = "" }, -- hard square edges between sections
 				disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
 			}
 
-			-- Bottom bar
+			-- Bottom bar: [mode][branch] file ... diagnostics filetype [progress][location]
 			opts.sections = {
-				lualine_a = { { "mode", separator = { left = round_l }, right_padding = 2 } },
-				lualine_b = { { "branch", icon = branch_icon }, "diff" },
+				lualine_a = {
+					{ "mode", separator = { left = edge_l, right = edge_r }, padding = { left = 1, right = 1 } },
+				},
+				lualine_b = {
+					{ "branch", icon = branch_icon, padding = { left = 1, right = 1 } },
+				},
 				lualine_c = {
 					{
 						"filename",
-						path = 1,
+						path = 0, -- just the file name, not the full path
 						symbols = { modified = " ●", readonly = " " .. lock_icon, unnamed = "[No Name]" },
 					},
 				},
@@ -340,10 +346,12 @@ return {
 						"diagnostics",
 						symbols = { error = ico.error, warn = ico.warn, info = ico.info, hint = ico.hint },
 					},
-					"filetype",
+					{ "filetype", icon_only = false, colored = false },
 				},
-				lualine_y = { "encoding", "progress" },
-				lualine_z = { { "location", separator = { right = round_r }, left_padding = 2 } },
+				lualine_y = { { "progress", padding = { left = 1, right = 1 } } },
+				lualine_z = {
+					{ "location", separator = { left = edge_l, right = edge_r }, padding = { left = 1, right = 1 } },
+				},
 			}
 			opts.inactive_sections = {
 				lualine_c = { "filename" },
@@ -359,8 +367,7 @@ return {
 						show_filename_only = true,
 						show_modified_status = true,
 						symbols = { modified = " ●", alternate_file = "", directory = "" },
-						separator = { left = round_l },
-						right_padding = 2,
+						separator = { left = edge_l, right = edge_r },
 						buffers_color = {
 							active = { fg = c.bg, bg = c.normal, gui = "bold" },
 							inactive = { fg = c.dim, bg = c.bg_alt },
@@ -368,7 +375,7 @@ return {
 					},
 				},
 				lualine_z = {
-					{ "tabs", mode = 0, separator = { right = round_r }, left_padding = 2 },
+					{ "tabs", mode = 0, separator = { left = edge_l, right = edge_r } },
 				},
 			}
 
