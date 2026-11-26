@@ -1,7 +1,6 @@
 # fzf
 command -v fzf >/dev/null && source <(fzf --zsh)
 
-# zoxide
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
 # eza aliases
